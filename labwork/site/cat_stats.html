@@ -1,0 +1,54 @@
+@{
+Layout = "layout";
+}
+
+<div class="container mt-5">
+    <h2>Информация о котенке</h2>
+    <div class="featured-post">
+        <div class="row row-cols-2 row-cols-md-3 py-2">
+            <div class="col">
+                <img class="img-fluid rounded-2" src="@Model.Cat.Avatar" alt="Featured post">
+            </div>
+            
+            <div class="col">
+                <p>Имя кота: @Model.Cat.Name</p>
+                <p>Возраст кота: @Model.Cat.Age</p>
+                <p>Уровень сытости: @Model.Cat.HungerLevel</p>
+                <p>Уровень счастья: @Model.Cat.HappinessLevel</p>
+                @if (!string.IsNullOrEmpty(Model.Cat.HungerErrorMessage))
+                {
+                <p>@Model.Cat.HungerErrorMessage</p>
+                }
+                @if (!string.IsNullOrEmpty(Model.Cat.HappinessErrorMessage))
+                {
+                <p>@Model.Cat.HappinessErrorMessage</p>
+                }
+            </div>
+            
+            <div>
+                <h2>Подсказка</h2>
+                <p>Спящий кот не может кушать и повторно спать, будят кота игрой, при этом отнимается 5 очков счастья и 10 очков сытости. 
+                    При перекорме отнимается 30 очков счастья.
+                Также при игре есть вероятность агрессии. Реабилитация специально создана для того чтобы ваш кот мог вылечиться и быть счастливым</p>
+            </div>
+                
+            
+        </div>
+    </div>
+    <form action="http://localhost:8888/cat_stats.html" method="get" class="mt-3">
+        <div class="form-group">
+            <label for="action" style="font-size: 18px;">Выберите действие:</label>
+            <select class="form-control" name="action" id="action">
+                @if(!Model.Cat.IsSleeping){
+                <option value="feed">Покормить кота</option>
+                }
+                <option value="play">Поиграть с котом</option>
+                @if(!Model.Cat.IsSleeping){
+                <option value="sleep">Уложить кота спать</option>
+                }
+                <option value="heal">Реабилитация кота</option>
+            </select>
+        </div>
+        <button type="submit" class="btn btn-primary btn-lg">Выполнить</button>
+    </form>
+</div>
