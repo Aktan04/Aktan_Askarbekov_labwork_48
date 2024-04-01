@@ -1,0 +1,15 @@
+body {
+    font-family: 'Inter', sans-serif;
+    margin: 0 auto;
+    font-weight: 400;
+    color: #232536;
+}
+.featured-post {
+    background-color: #F5F3F3;
+    padding: 20px;
+    border: 1px solid #b6b5b571;
+    border-radius: 4px;
+}
+p{
+    font-size: 20px;
+}
